@@ -2,9 +2,12 @@ version: '2'
 services:
   vrt-server:
     image: omelhoro1/vrt-server
+    container_name: vrt-server
     restart: unless-stopped
     # ports:
     #   - "3000:3000"
+    labels:
+      - "traefik.frontend.rule=Host:vrt-server.fischerops.com"
     volumes:
       - /usr/captain/vrt-pictures:/app/pictures
     environment:
