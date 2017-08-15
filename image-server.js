@@ -9,5 +9,5 @@ app.use('/gallery', require('node-gallery')({
   title : 'Visual Regression Testing'
 }));
 
-app.listen(port);
+app.listen(port, '0.0.0.0');
 console.log('node-gallery listening on localhost:' + port);
