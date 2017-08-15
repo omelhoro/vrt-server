@@ -1,7 +1,7 @@
 require('shelljs/global');
 
 var IncomingWebhook = require('@slack/client').IncomingWebhook;
-var secret = require('vault/secret/credentials.js');
+var secret = require('./vault/secret/credentials.js');
 
 var webhook = new IncomingWebhook(secret.slack.webhookUrl);
 
