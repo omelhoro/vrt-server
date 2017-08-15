@@ -7,12 +7,13 @@ services:
     # ports:
     #   - "3000:3000"
     labels:
-      - "traefik.frontend.rule=Host:vrt-server.fischerops.com"
+      - "traefik.frontend.rule=Host:vrt-server.igor-fischer.rocks,vrt-server.fischerops.com"
     volumes:
       - /usr/captain/vrt-pictures:/app/pictures
     environment:
       - VIRTUAL_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
       - LETSENCRYPT_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
+      - CURRENT_URL=vrt-server.igor-fischer.rocks
       - VAULT_PASS=${VAULT_PASS}
       - VIRTUAL_NETWORK=proxy-tier
       - VIRTUAL_PORT=3000
