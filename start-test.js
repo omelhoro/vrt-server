@@ -14,8 +14,12 @@ const json = JSON.parse(jsonString);
 
 console.log("Received JSON: ", jsonString);
 
+function formatUrl(filePath) {
+  return filePath.replace('/app/pictures/', `${process.env.CURRENT_URL}/gallery/`);
+}
+
 function transformTestOutput(json) {
-  const text = json.map(e => `• ${e.success ? 'SUCCESS' : '*FAIL*'}: ${e.failFile || e.filename}`).join('\n');
+  const text = json.map(e => `• ${e.success ? 'SUCCESS' : '*FAIL*'}: ${formatUrl(e.failFile || e.filename)}`).join('\n');
   return text;
 }
 
