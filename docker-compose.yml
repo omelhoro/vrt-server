@@ -1,0 +1,21 @@
+version: '2'
+services:
+  vrt-server:
+    image: omelhoro1/vrt-server
+    restart: unless-stopped
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - /usr/captain/vrt-pictures:/app/pictures
+    environment:
+      - VIRTUAL_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
+      - LETSENCRYPT_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
+      - VAULT_PASS=${VAULT_PASS}
+      - VIRTUAL_NETWORK=proxy-tier
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_EMAIL=fischerig@outlook.com
+    networks:
+      - proxy-tier
+networks:
+  proxy-tier:
+    external: true

@@ -1,0 +1,22 @@
+{
+  "name": "vrt-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./vault/decrypt.sh && node image-server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/client": "^3.11.0",
+    "casperjs": "^1.1.2",
+    "express": "^4.15.4",
+    "node-gallery": "^1.1.0",
+    "phantomcss": "^1.1.5",
+    "phantomjs-prebuilt": "^2.1.4",
+    "resemblejs": "^2.2.2",
+    "shelljs": "^0.7.8"
+  }
+}

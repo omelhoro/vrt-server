@@ -1,0 +1,5 @@
+pictures/**
+node_modules/**
+
+vault/secret
+vault/secret.tar
