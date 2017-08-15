@@ -12,6 +12,6 @@ COPY ./ /app
 RUN cp ./node_modules/phantomjs-prebuilt/bin/phantomjs /usr/local/bin/
 RUN cp -r ./node_modules/phantomjs-prebuilt /usr/local/lib/phantomjs
 
-CMD ["node","image-server.js"]
+CMD ["npm start"]
 
 EXPOSE 3000
