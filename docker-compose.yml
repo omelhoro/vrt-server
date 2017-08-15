@@ -13,7 +13,7 @@ services:
     environment:
       - VIRTUAL_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
       - LETSENCRYPT_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
-      - CURRENT_URL=vrt-server.igor-fischer.rocks
+      - CURRENT_URL=https://vrt-server.igor-fischer.rocks
       - VAULT_PASS=${VAULT_PASS}
       - VIRTUAL_NETWORK=proxy-tier
       - VIRTUAL_PORT=3000
