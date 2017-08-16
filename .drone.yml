@@ -19,8 +19,9 @@ pipeline:
     user: captain
     hosts: [ "igor-fischer.rocks" ]
     port: 22
-    source: ./docker-compose.yml
     target: /tmp/${DRONE_COMMIT}/
+    include:
+      - "docker-compose.yml"
     delete: false
     secrets: [ RSYNC_KEY ]
     script:
