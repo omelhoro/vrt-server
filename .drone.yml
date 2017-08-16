@@ -22,7 +22,7 @@ pipeline:
     source: ./docker-compose.yml
     target: /tmp/${DRONE_COMMIT}/
     delete: false
-    secrets: [ plugin_key ]
+    secrets: [ RSYNC_KEY ]
     script:
       - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml pull
       - VAULT_PASS="${VAULT_PASS}" docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
