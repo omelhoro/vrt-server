@@ -5,27 +5,26 @@ pipeline:
     commands:
       - echo "missing tests"
 
-  publish:
-    image: node:latest
-    docker:
-      username: $$DOCKER_USERNAME
-      password: $$DOCKER_PASSWORD
-      email: $$DOCKER_EMAIL
-      storage_driver: vfs
-      repo: omelhoro1/vrt-server
-      when:
-        branch: master
+  docker:
+    image: plugins/docker
+    username: omelhoro1
+    password: ${DOCKER_PASSWORD}
+    email: fischerig@outlook.com
+    storage_driver: vfs
+    repo: omelhoro1/vrt-server
+    when:
+      branch: master
 
   deploy:
     image: drillster/drone-rsync
-    user: $$PROD_USER
-    host: $$PROD_HOST
+    user: captain
+    host: igor-fischer.rocks
     port: 22
     source: ./docker-compose.yml
     target: /tmp/$$COMMIT/
     delete: false
     script:
       - docker-compose -f /tmp/$$COMMIT/docker-compose.yml pull
-      - VAULT_PASS="$$VAULT_PASS" docker-compose -f /tmp/$$COMMIT/docker-compose.yml -p vrt-server up -d
+      - VAULT_PASS="${VAULT_PASS}" docker-compose -f /tmp/$$COMMIT/docker-compose.yml -p vrt-server up -d
     when:
       branch: master
