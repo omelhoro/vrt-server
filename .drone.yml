@@ -8,10 +8,10 @@ pipeline:
   docker:
     image: plugins/docker
     username: omelhoro1
-    password: ${DOCKER_PASSWORD}
     email: fischerig@outlook.com
     storage_driver: vfs
     repo: omelhoro1/vrt-server
+    secrets: [ docker_password ]
     when:
       branch: master
   deploy:
