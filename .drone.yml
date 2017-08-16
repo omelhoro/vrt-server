@@ -14,7 +14,6 @@ pipeline:
     repo: omelhoro1/vrt-server
     when:
       branch: master
-
   deploy:
     image: drillster/drone-rsync
     user: captain
