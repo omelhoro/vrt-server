@@ -16,6 +16,8 @@ pipeline:
       when:
         branch: master
 
+
+
   deploy:
     image: drillster/drone-rsync
     user: $$PROD_USER
