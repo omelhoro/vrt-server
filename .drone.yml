@@ -16,7 +16,7 @@ pipeline:
   deploy:
     image: drillster/drone-rsync
     user: captain
-    host: igor-fischer.rocks
+    hosts: [ "igor-fischer.rocks" ]
     port: 22
     source: ./docker-compose.yml
     target: /tmp/${DRONE_COMMIT}/
