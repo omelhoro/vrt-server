@@ -17,6 +17,7 @@ pipeline:
     image: drillster/drone-rsync
     user: captain
     hosts: [ "igor-fischer.rocks" ]
+    key: ${PRIVATE_SSH_KEY}
     port: 22
     source: ./docker-compose.yml
     target: /tmp/${DRONE_COMMIT}/
