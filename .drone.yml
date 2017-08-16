@@ -11,7 +11,7 @@ pipeline:
     email: fischerig@outlook.com
     storage_driver: vfs
     repo: omelhoro1/vrt-server
-    secrets: [ docker_password ]
+    secrets: [ DOCKER_PASSWORD ]
     when:
       branch: master
   deploy:
