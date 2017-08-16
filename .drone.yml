@@ -1,24 +1,12 @@
 pipeline:
+
   build:
     image: node:latest
     commands:
       - echo "missing tests"
-  deploy:
-    rsync:
-      user: $$PROD_USER
-      host: $$PROD_HOST
-      port: 22
-      source: ./docker-compose.yml
-      target: /tmp/$$COMMIT/
-      delete: false
-      commands:
-        - docker-compose -f /tmp/$$COMMIT/docker-compose.yml pull
-        - VAULT_PASS="$$VAULT_PASS" docker-compose -f /tmp/$$COMMIT/docker-compose.yml -p vrt-server up -d
-      when:
-        branch: master
 
   publish:
-    image: node:latest
+    # image: node:latest
     docker:
       username: $$DOCKER_USERNAME
       password: $$DOCKER_PASSWORD
@@ -27,3 +15,17 @@ pipeline:
       repo: omelhoro1/vrt-server
       when:
         branch: master
+
+  deploy:
+    image: drillster/drone-rsync
+    user: $$PROD_USER
+    host: $$PROD_HOST
+    port: 22
+    source: ./docker-compose.yml
+    target: /tmp/$$COMMIT/
+    delete: false
+    script:
+      - docker-compose -f /tmp/$$COMMIT/docker-compose.yml pull
+      - VAULT_PASS="$$VAULT_PASS" docker-compose -f /tmp/$$COMMIT/docker-compose.yml -p vrt-server up -d
+    when:
+      branch: master
