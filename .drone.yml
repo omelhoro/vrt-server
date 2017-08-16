@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: node
+    image: node:latest
     commands:
       - echo "missing tests"
   deploy:
@@ -18,6 +18,7 @@ pipeline:
         branch: master
 
   publish:
+    image: node:latest
     docker:
       username: $$DOCKER_USERNAME
       password: $$DOCKER_PASSWORD
