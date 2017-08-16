@@ -6,7 +6,7 @@ pipeline:
       - echo "missing tests"
 
   publish:
-    # image: node:latest
+    image: node:latest
     docker:
       username: $$DOCKER_USERNAME
       password: $$DOCKER_PASSWORD
