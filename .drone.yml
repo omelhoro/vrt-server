@@ -17,11 +17,11 @@ pipeline:
     image: drillster/drone-rsync
     user: captain
     hosts: [ "igor-fischer.rocks" ]
-    key: ${RSYNC_KEY}
     port: 22
     source: ./docker-compose.yml
     target: /tmp/${DRONE_COMMIT}/
     delete: false
+    secrets: [ plugin_key ]
     script:
       - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml pull
       - VAULT_PASS="${VAULT_PASS}" docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
