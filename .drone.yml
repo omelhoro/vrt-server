@@ -1,27 +1,28 @@
-build:
-  image: node
-  commands:
-    - echo "missing tests"
-deploy:
-  rsync:
-    user: $$PROD_USER
-    host: $$PROD_HOST
-    port: 22
-    source: ./docker-compose.yml
-    target: /tmp/$$COMMIT/
-    delete: false
+pipeline:
+  build:
+    image: node
     commands:
-      - docker-compose -f /tmp/$$COMMIT/docker-compose.yml pull
-      - VAULT_PASS="$$VAULT_PASS" docker-compose -f /tmp/$$COMMIT/docker-compose.yml -p vrt-server up -d
-    when:
-      branch: master
+      - echo "missing tests"
+  deploy:
+    rsync:
+      user: $$PROD_USER
+      host: $$PROD_HOST
+      port: 22
+      source: ./docker-compose.yml
+      target: /tmp/$$COMMIT/
+      delete: false
+      commands:
+        - docker-compose -f /tmp/$$COMMIT/docker-compose.yml pull
+        - VAULT_PASS="$$VAULT_PASS" docker-compose -f /tmp/$$COMMIT/docker-compose.yml -p vrt-server up -d
+      when:
+        branch: master
 
-publish:
-  docker:
-    username: $$DOCKER_USERNAME
-    password: $$DOCKER_PASSWORD
-    email: $$DOCKER_EMAIL
-    storage_driver: vfs
-    repo: omelhoro1/vrt-server
-    when:
-      branch: master
+  publish:
+    docker:
+      username: $$DOCKER_USERNAME
+      password: $$DOCKER_PASSWORD
+      email: $$DOCKER_EMAIL
+      storage_driver: vfs
+      repo: omelhoro1/vrt-server
+      when:
+        branch: master
