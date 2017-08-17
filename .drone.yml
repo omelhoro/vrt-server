@@ -14,6 +14,7 @@ pipeline:
   #     branch: master
 
 
+
   deploy:
     image: omelhoro1/drone-rsync
     user: captain
