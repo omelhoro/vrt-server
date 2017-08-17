@@ -16,6 +16,7 @@ pipeline:
 
 
   deploy:
+    image: omelhoro1/drone-rsync
     user: captain
     hosts: [ "igor-fischer.rocks" ]
     port: 22
