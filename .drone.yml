@@ -2,10 +2,8 @@ pipeline:
 
   build:
     image: node:latest
-    secrets: [ vault_pass, test_var ]
     commands:
-      - echo "VAULT_PASS $VAULT_PASS"
-      - echo "TEST_VAR $TEST_VAR"
+      - echo "Missing tests"
 
   # docker:
   #   image: plugins/docker
@@ -24,9 +22,9 @@ pipeline:
     include:
       - "docker-compose.yml"
     delete: false
-    secrets: [ rsync_key, vault_pass ]
+    secrets: [ rsync_key, vault_pass, vault_pass ]
     script:
       - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml pull
-      - VAULT_PASS="${VAULT_PASS}" docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
+      - VAULT_PASS="$VAULT_PASS" docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
     when:
       branch: master
