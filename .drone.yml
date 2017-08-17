@@ -15,7 +15,7 @@ pipeline:
 
 
   deploy:
-    image: omelhoro1/drone-rsync
+    image: drillster/drone-rsync
     user: captain
     hosts: [ "igor-fischer.rocks" ]
     port: 22
@@ -23,7 +23,7 @@ pipeline:
     include:
       - "docker-compose.yml"
     delete: false
-    secrets: [ plugin_key, rsync_key ]
+    secrets: [ rsync_key ]
     script:
       - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml pull
       - VAULT_PASS="${VAULT_PASS}" docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
