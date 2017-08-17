@@ -4,7 +4,8 @@ pipeline:
     image: node:latest
     secrets: [ vault_pass ]
     commands:
-      - echo "${VAULT_PASS}"
+      - echo "VAULT_PASS: ${VAULT_PASS}"
+      - echo "TEST_VAR: ${TEST_VAR}"
 
   # docker:
   #   image: plugins/docker
