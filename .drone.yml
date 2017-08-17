@@ -1,17 +1,17 @@
 pipeline:
 
-  build:
-    image: node:latest
-    commands:
-      - echo "missing tests"
-
-  docker:
-    image: plugins/docker
-    storage_driver: vfs
-    repo: omelhoro1/vrt-server
-    secrets: [ docker_username, docker_password ]
-    when:
-      branch: master
+  # build:
+  #   image: node:latest
+  #   commands:
+  #     - echo "missing tests"
+  #
+  # docker:
+  #   image: plugins/docker
+  #   storage_driver: vfs
+  #   repo: omelhoro1/vrt-server
+  #   secrets: [ docker_username, docker_password ]
+  #   when:
+  #     branch: master
 
   deploy:
     image: drillster/drone-rsync
@@ -22,7 +22,7 @@ pipeline:
     include:
       - "docker-compose.yml"
     delete: false
-    secrets: [ rsync_key ]
+    secrets: [ rsync_key, vault_pass ]
     script:
       - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml pull
       - VAULT_PASS="${VAULT_PASS}" docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
