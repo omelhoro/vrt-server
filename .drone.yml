@@ -1,18 +1,17 @@
 pipeline:
 
-  # build:
-  #   image: node:latest
-  #   commands:
-  #     - echo "missing tests"
-  #
-  # docker:
-  #   image: plugins/docker
-  #   storage_driver: vfs
-  #   repo: omelhoro1/vrt-server
-  #   secrets: [ docker_username, docker_password ]
-  #   when:
-  #     branch: master
+  build:
+    image: node:latest
+    commands:
+      - echo "missing tests"
 
+  docker:
+    image: plugins/docker
+    storage_driver: vfs
+    repo: omelhoro1/vrt-server
+    secrets: [ docker_username, docker_password ]
+    when:
+      branch: master
 
   deploy:
     image: drillster/drone-rsync
