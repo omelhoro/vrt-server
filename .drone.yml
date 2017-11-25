@@ -13,7 +13,6 @@ pipeline:
   #   when:
   #     branch: master
 
-
   deploy:
     image: omelhoro1/drone-rsync
     user: captain
@@ -22,6 +21,8 @@ pipeline:
     target: /tmp/vrt-server-${DRONE_COMMIT}/
     include:
       - "docker-compose.yml"
+    exclude:
+      - "**.*"
     delete: false
     secrets: [ rsync_key ]
     script:
