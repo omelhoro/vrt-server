@@ -19,7 +19,7 @@ pipeline:
     user: captain
     hosts: [ "igor-fischer.rocks" ]
     port: 22
-    target: /tmp/${DRONE_REPO}/${DRONE_COMMIT}/
+    target: /tmp/vrt-server/${DRONE_COMMIT}/
     include:
       - "docker-compose.yml"
     delete: false
