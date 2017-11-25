@@ -19,14 +19,14 @@ pipeline:
     user: captain
     hosts: [ "igor-fischer.rocks" ]
     port: 22
-    target: /tmp/${DRONE_COMMIT}/
+    target: /tmp/${DRONE_REPO}/${DRONE_COMMIT}/
     include:
       - "docker-compose.yml"
     delete: false
-    secrets: [ rsync_key, vault_pass ]
+    secrets: [ rsync_key ]
     script:
       - echo $VAULT_PASS
       - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml pull
-      - VAULT_PASS=$VAULT_PASS docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
+      - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
     when:
       branch: master

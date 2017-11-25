@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   vrt-server:
     image: omelhoro1/vrt-server
@@ -8,13 +8,14 @@ services:
     #   - "3000:3000"
     labels:
       - "traefik.frontend.rule=Host:vrt-server.igor-fischer.rocks,vrt-server.fischerops.com"
+    env_file:
+      - /home/captain/vrt-server/secrets
     volumes:
       - /usr/captain/vrt-pictures:/app/pictures
     environment:
       - VIRTUAL_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
       - LETSENCRYPT_HOST=vrt-server.igor-fischer.rocks,vrt-server.fischerops.com
       - CURRENT_URL=https://vrt-server.igor-fischer.rocks
-      - VAULT_PASS=${VAULT_PASS}
       - VIRTUAL_NETWORK=proxy-tier
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_EMAIL=fischerig@outlook.com
