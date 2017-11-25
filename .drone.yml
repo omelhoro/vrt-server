@@ -26,7 +26,7 @@ pipeline:
     delete: false
     secrets: [ rsync_key ]
     script:
-      - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml pull
-      - docker-compose -f /tmp/${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
+      - docker-compose -f /tmp/vrt-server-${DRONE_COMMIT}/docker-compose.yml pull
+      - docker-compose -f /tmp/vrt-server-${DRONE_COMMIT}/docker-compose.yml -p vrt-server up -d
     when:
       branch: master
